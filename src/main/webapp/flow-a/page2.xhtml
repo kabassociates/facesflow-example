@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Flow A</title>
+    </h:head>
+    <h:body>
+        <h1>#{flowABean.welcomeMessage}</h1>
+        <h2>This is the second page in the flow</h2>
+        
+        <h:form>
+            
+            This is in the flow scope: <br />
+            <h:inputText value="#{flowScope.someInput}" /> <h:commandButton value="store" /> <br />
+            
+            <br />
+            <h:commandButton value="back" action="flow-a"/>
+            <h:commandButton value="next" action="flow-a-page-3" />
+            <br />
+            <h:commandButton value="Exit flow to Homepage (POST)" action="/index.xhtml"/>
+            <h:commandButton value="Exit flow through end node (POST)" action="return-node"/>
+            
+        </h:form>
+
+    </h:body>
+</html>
+
