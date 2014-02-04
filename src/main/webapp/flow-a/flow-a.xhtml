@@ -13,8 +13,15 @@
             Put something into flow scope: <br />
             <h:inputText value="#{flowScope.someInput}" /> <h:commandButton value="store" /> <br />
             
+            <hr />
+            Contents of flow scope: <br />
+            #{flowScope}
+            <hr />
+            
             <br />
             <h:commandButton value="next" action="flow-a-page-2" />
+            <h:commandButton value="call method node" action="method-node" />
+            <h:commandButton value="Exit flow through call of method node" action="exit-method-node" />
             <br />
             
             <h:commandButton value="Exit flow to Homepage (POST)" action="/index.xhtml"/>
