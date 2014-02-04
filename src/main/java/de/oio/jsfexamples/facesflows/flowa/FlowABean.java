@@ -20,7 +20,7 @@ import javax.inject.Named;
 @FlowScoped("flow-a")
 public class FlowABean {
     
-    private static final Logger LOG = Logger.getLogger(FlowABean.class.getSimpleName());
+    private static final Logger LOG = Logger.getLogger(FlowABean.class.getName());
     
     private String welcomeMessage = "Welcome to Flow A!";
 
@@ -30,6 +30,14 @@ public class FlowABean {
 
     public void setWelcomeMessage(String welcomeMessage) {
         this.welcomeMessage = welcomeMessage;
+    }
+    
+    public void initialize() {
+        LOG.info("Flow initialized");
+    }
+
+    public void finalize() {
+        LOG.info("Flow finalized");
     }
     
     @PostConstruct 

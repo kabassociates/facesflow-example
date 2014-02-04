@@ -37,6 +37,9 @@ public class FlowFactory implements Serializable {
         // add another view to the flow 
         flowBuilder.viewNode("flow-a-page-3", "/common-page.xhtml");   
         
+        flowBuilder.initializer("#{flowABean.initialize()}");
+        flowBuilder.finalizer("#{flowABean.finalize()}");
+        
         // add a return node. The flow is exited with the outcome "home" once this node is reached.
         flowBuilder.returnNode("return-node").fromOutcome("home");
         
