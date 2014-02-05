@@ -55,6 +55,18 @@ public class FlowFactory implements Serializable {
         flowBuilder.methodCallNode("exit-method-node")
                 .expression("#{flowABean.exitMethodFlowNode()}");
         
+        flowBuilder.switchNode("switch-node")   // create a switch node
+                .defaultOutcome("home")         // exit flow to homepage, if no valid selection happened
+                // several switch statements
+                .switchCase()  
+                    .condition("#{flowABean.selectedPage==1}").fromOutcome("flow-a")
+                .switchCase()
+                    .condition("#{flowABean.selectedPage==2}").fromOutcome("flow-a-page-2")
+                .switchCase()
+                    .condition("#{flowABean.selectedPage==3}").fromOutcome("flow-a-page-3")
+                .switchCase()
+                    .condition("#{flowABean.selectedPage==4}").fromOutcome("return-node");
+
         // call this when the flow is entered
         flowBuilder.initializer("#{flowABean.initialize()}");
         

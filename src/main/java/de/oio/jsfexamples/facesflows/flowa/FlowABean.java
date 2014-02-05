@@ -26,6 +26,7 @@ public class FlowABean {
     private static final Logger LOG = Logger.getLogger(FlowABean.class.getName());
     
     private String welcomeMessage = "Welcome to Flow A!";
+    private int selectedPage = 3;
 
     public String getWelcomeMessage() {
         return welcomeMessage;
@@ -63,6 +64,14 @@ public class FlowABean {
     @PreDestroy 
     public void onDestruction() {
         LOG.info("destroyed");
+    }
+
+    public int getSelectedPage() {
+        return selectedPage;
+    }
+
+    public void setSelectedPage(int selectedPage) {
+        this.selectedPage = selectedPage;
     }
     
 }

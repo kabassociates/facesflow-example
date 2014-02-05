@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Flow A</title>
     </h:head>
@@ -18,8 +19,21 @@
             #{flowScope}
             <hr />
             
+            <hr />
+                    Where do you want to go from here?
+                    <h:selectOneMenu value="#{flowABean.selectedPage}">
+                        <f:ajax execute="@this" />
+                        <f:selectItem itemLabel="flow-a" itemValue="1" />
+                        <f:selectItem itemLabel="flow-a-page-2" itemValue="2" />
+                        <f:selectItem itemLabel="flow-a-page-3" itemValue="3" />
+                        <f:selectItem itemLabel="return-node" itemValue="4" />
+                    </h:selectOneMenu>
+                    <h:commandButton id="activateSwitchNodeButton" value="go!" action="switch-node" /> ::: #{2==2}
+            <hr />
+            
             <br />
             <h:commandButton value="next" action="flow-a-page-2" />
+            <h:commandButton value="switch" action="switch-node" />
             <h:commandButton value="call method node" action="method-node" />
             <h:commandButton value="Exit flow through call of method node" action="exit-method-node" />
             <br />
