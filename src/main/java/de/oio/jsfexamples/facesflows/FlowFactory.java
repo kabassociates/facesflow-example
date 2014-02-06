@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package de.oio.jsfexamples.facesflows.flowa;
+package de.oio.jsfexamples.facesflows;
 
 import java.io.Serializable;
 import java.util.logging.Logger;
@@ -28,7 +28,7 @@ public class FlowFactory implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Produces @FlowDefinition
-    public Flow defineFlow( @FlowBuilderParameter FlowBuilder flowBuilder) {
+    public Flow defineFlowA( @FlowBuilderParameter FlowBuilder flowBuilder) {
         String flowId = "flow-a";   // id for this flow 
         flowBuilder.id("", flowId); // set flow id
         
@@ -67,6 +67,9 @@ public class FlowFactory implements Serializable {
                 .switchCase()
                     .condition("#{flowABean.selectedPage==4}").fromOutcome("return-node");
 
+        // Node to go directly to flow B
+        flowBuilder.flowCallNode("call-flow-b").flowReference("", "flow-b").outboundParameter("param", "#{flowABean.someMessage}");
+        
         // call this when the flow is entered
         flowBuilder.initializer("#{flowABean.initialize()}");
         
@@ -75,6 +78,20 @@ public class FlowFactory implements Serializable {
         
         // add a return node. The flow is exited with the outcome "home" once this node is reached.
         flowBuilder.returnNode("return-node").fromOutcome("home");
+        
+        return flowBuilder.getFlow();
+    }
+    
+    @Produces @FlowDefinition
+    public Flow defineFlowB( @FlowBuilderParameter FlowBuilder flowBuilder) {
+        String flowId = "flow-b";   
+        flowBuilder.id("", flowId); 
+        
+        flowBuilder.inboundParameter("param", "#{flowBBean.inbound}");
+        
+        flowBuilder.viewNode(flowId, "/" + flowId + "/" + flowId + ".xhtml").markAsStartNode();
+        flowBuilder.viewNode("flow-b-page-2", "/" + flowId + "/flowb2.xhtml");
+        flowBuilder.returnNode("return-to-a").fromOutcome("flow-a");
         
         return flowBuilder.getFlow();
     }

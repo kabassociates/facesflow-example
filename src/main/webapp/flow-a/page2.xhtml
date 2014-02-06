@@ -10,16 +10,17 @@
         <h2>This is the second page in the flow</h2>
         
         <h:form>
-            
-            This is in the flow scope: <br />
-            <h:inputText value="#{flowScope.someInput}" /> <h:commandButton value="store" /> <br />
-            
+
+            Store something a flow scoped bean: <h:inputText value="#{flowABean.someMessage}" />
+            <hr />
             <br />
             <h:commandButton value="back" action="flow-a"/>
             <h:commandButton value="next" action="flow-a-page-3" />
             <br />
             <h:commandButton value="Exit flow to Homepage (POST)" action="/index.xhtml"/>
             <h:commandButton value="Exit flow through end node (POST)" action="return-node"/>
+            <hr />
+            <h:commandButton value="Enter Flow B" action="call-flow-b" />
             
         </h:form>
 

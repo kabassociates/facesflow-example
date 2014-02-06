@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package de.oio.jsfexamples.facesflows.flowa;
+package de.oio.jsfexamples.facesflows;
 
+import java.io.Serializable;
 import java.util.Map;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -21,12 +22,13 @@ import javax.inject.Named;
  */
 @Named
 @FlowScoped("flow-a")
-public class FlowABean {
+public class FlowABean implements Serializable{
     
     private static final Logger LOG = Logger.getLogger(FlowABean.class.getName());
     
     private String welcomeMessage = "Welcome to Flow A!";
     private int selectedPage = 3;
+    private String someMessage;
 
     public String getWelcomeMessage() {
         return welcomeMessage;
@@ -40,30 +42,30 @@ public class FlowABean {
         Flow flow = FacesContext.getCurrentInstance().getApplication().getFlowHandler().getCurrentFlow();
         Map<Object, Object> flowScope = FacesContext.getCurrentInstance().getApplication().getFlowHandler().getCurrentFlowScope();
 
-        LOG.info("Flow initialized");
+        LOG.info("Flow A initialized");
     }
     
     public void methodFlowNode(String param) {
-        LOG.info("Method node reached with param: " + param);
+        LOG.info("Flow A method node reached with param: " + param);
     }
     
     public String exitMethodFlowNode() {
-        LOG.info("Exiting flow through method node");
+        LOG.info("Exiting flow A through method node");
         return "return-node";
     }
 
     public void finalize() {
-        LOG.info("Flow finalized");
+        LOG.info("Flow A finalized");
     }
     
     @PostConstruct 
     public void onCreation() {
-        LOG.info("created");
+        LOG.info("Flow A created");
     }
     
     @PreDestroy 
     public void onDestruction() {
-        LOG.info("destroyed");
+        LOG.info("Flow A destroyed");
     }
 
     public int getSelectedPage() {
@@ -72,6 +74,14 @@ public class FlowABean {
 
     public void setSelectedPage(int selectedPage) {
         this.selectedPage = selectedPage;
+    }
+
+    public String getSomeMessage() {
+        return someMessage;
+    }
+
+    public void setSomeMessage(String someMessage) {
+        this.someMessage = someMessage;
     }
     
 }

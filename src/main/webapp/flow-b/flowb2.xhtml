@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Flow B</title>
+    </h:head>
+    <h:body>
+        <h1>#{flowBBean.welcomeMessage}</h1>
+        
+        <h:form>
+            Put something into flow scope: <br />
+            <h:inputText value="#{flowScope.someInput}" /> <h:commandButton value="store" /> <br />
+         
+            Inbound param: <h:inputText value="#{flowBBean.inbound}" />
+            
+            <h:commandButton value="back to flow A" action="return-to-a" />
+        </h:form>
+
+    </h:body>
+</html>
+
