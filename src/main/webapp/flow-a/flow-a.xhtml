@@ -25,6 +25,7 @@
                 <f:selectItem itemLabel="return-node" itemValue="4" />
             </h:selectOneMenu>
             <h:commandButton id="activateSwitchNodeButton" value="navigate using switch node" action="switch-node" /> 
+            <h:commandButton value="invoke method that calls the method node" action="#{flowABean.doNothing}" />
             <br />
             <hr />
             <h:commandButton value="next" action="flow-a-page-2" />

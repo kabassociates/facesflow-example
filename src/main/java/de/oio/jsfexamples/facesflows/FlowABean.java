@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package de.oio.jsfexamples.facesflows;
 
 import java.io.Serializable;
@@ -43,6 +37,11 @@ public class FlowABean implements Serializable{
         Map<Object, Object> flowScope = FacesContext.getCurrentInstance().getApplication().getFlowHandler().getCurrentFlowScope();
 
         LOG.info("Flow A initialized");
+    }
+    
+    public String doNothing() {
+        methodFlowNode("called from within another method");
+        return "method-node";
     }
     
     public void methodFlowNode(String param) {
