@@ -15,7 +15,8 @@
          
             Inbound param: <h:inputText value="#{flowBBean.inbound}" />
             
-            <h:commandButton value="back to flow A" action="return-to-a" />
+            <h:commandButton value="back to flow A" action="return-to-a" rendered="#{flowScope.origin == 'flow-a'}" />
+            <h:commandButton value="exit Flow B to homepage" action="/index.xhtml" />
         </h:form>
 
     </h:body>

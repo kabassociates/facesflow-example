@@ -64,9 +64,10 @@ public class FlowFactory implements Serializable {
         flowBuilder.finalizer("#{flowABean.finalize()}");
 
         // Node to go directly to flow B
-flowBuilder.flowCallNode("call-flow-b")
-        .flowReference("", "flow-b")
-        .outboundParameter("param", "#{flowABean.someMessage}");
+        flowBuilder.flowCallNode("call-flow-b")
+                .flowReference("", "flow-b")
+                .outboundParameter("param", "#{flowABean.someMessage}")
+                .outboundParameter("origin", "flow-a");
         
         return flowBuilder.getFlow();
     }
@@ -76,6 +77,7 @@ flowBuilder.flowCallNode("call-flow-b")
         String flowId = "flow-b";   
         flowBuilder.id("", flowId); 
         
+        flowBuilder.inboundParameter("origin", "#{flowScope.origin}");
         flowBuilder.inboundParameter("param", "#{flowBBean.inbound}");
         
         flowBuilder.viewNode(flowId, "/" + flowId + "/" + flowId + ".xhtml").markAsStartNode();

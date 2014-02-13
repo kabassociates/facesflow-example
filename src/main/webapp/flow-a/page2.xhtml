@@ -21,6 +21,10 @@
             <h:commandButton value="Exit flow through end node (POST)" action="return-node"/>
             <hr />
             <h:commandButton value="Enter Flow B" action="call-flow-b" />
+            <hr />
+            Navigate elsewhere (outside the flow):
+            <h:commandButton value="POST" action="/somePage.xhtml" />
+            <h:button value="GET" outcome="/somePage.xhtml" />
             
         </h:form>
 
