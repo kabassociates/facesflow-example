@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>FacesFlows example</title>
     </h:head>
@@ -11,6 +12,14 @@
             <h1>Welcome - Choose a flow </h1>
             <h:commandButton value="Flow A" action="flow-a" />  
             <h:commandButton value="Flow B" action="flow-b" />  
+            <hr />
+            <h:selectOneMenu value="#{requestScope.selectedFlow}">
+                <f:selectItem itemLabel="--- Select a Flow ---" noSelectionOption="true" />
+                <f:selectItem itemLabel="Flow A" itemValue="flow-a" />
+                <f:selectItem itemLabel="Flow B" itemValue="flow-b" />
+                <f:valueChangeListener type="de.oio.jsfexamples.facesflows.NaviagtionTargetListener" />
+                <f:ajax execute="@all" render="@all"/>
+            </h:selectOneMenu>
             
         </h:form>
         
